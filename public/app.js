@@ -1,4 +1,4 @@
-$.getJSON("/articles", data => {
+$.getJSON("/articles", function(data) {
     for (var x = 0; x < data.length; x++) {
         $("#articles").append("<p data-id='" + data[x]._id + "'>" + data[x].title + "<br />" + data[x].link + "</p>");
     }
@@ -12,7 +12,7 @@ $(document).on("click", "p", function() {
     $.ajax({
         method: "GET",
         url: "/articles/" + thisId
-    }).then( data => {
+    }).then( function(data) {
         console.log(data);
 
         $("#notes").append("<h2>" + data.title + "</h2>");
@@ -27,7 +27,7 @@ $(document).on("click", "p", function() {
     });
 });
 
-$(document).on("click", "#savenote", () => {
+$(document).on("click", "#savenote", function() {
     let thisId = $(this).attr("data-id");
 
     $.ajax({
@@ -37,7 +37,7 @@ $(document).on("click", "#savenote", () => {
             title: $("#titleinput").val(),
             body: $("#bodyinput").val()
         }
-    }).then( data => {
+    }).then( function(data) {
         console.log(data);
         $("#notes").empty();
     });
