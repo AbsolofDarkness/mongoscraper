@@ -16,7 +16,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost/mongoscraper", { useNewUrlParser: true });
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoscraper";
+
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Routes
 
